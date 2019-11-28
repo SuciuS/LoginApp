@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -28,6 +27,29 @@ public class LoginController implements Initializable {
     private TextField tf_username;
     @FXML
     private PasswordField pf_password;
+
+    double x = 0, y = 0;
+
+    @FXML
+    void pressed(MouseEvent event) {
+
+        x = event.getSceneX();
+        y = event.getSceneY();
+
+    }
+
+    @FXML
+    void dragged(MouseEvent event) {
+
+        Node node = (Node) event.getSource();
+
+        Stage stage = (Stage) node.getScene().getWindow();
+
+        stage.setX(event.getScreenX() - x);
+        stage.setY(event.getScreenY() - y);
+
+    }
+
 
     @FXML
     void login(MouseEvent event) throws SQLException, IOException {
